@@ -11,7 +11,6 @@ export default function HomeScreen() {
     const navigation = useNavigation();
     const [text, setText] = React.useState<string>("");
     const onPress = () => {
-        console.log(text);
         navigation.navigate("camera", { text });
     };
     return (
