@@ -5,8 +5,8 @@ import { CameraView, useCameraPermissions } from "expo-camera";
 import ScrollingTextComponent from "@/components/ScrollingTextComponent";
 
 type RouteParams = {
-  text: string,
-  secondsPerLine: number
+    text: string;
+    secondsPerLine: number;
 };
 
 export default function CameraComponent() {
@@ -16,7 +16,7 @@ export default function CameraComponent() {
     const [recording, setRecording] = useState(false);
     const [video, setVideo] = useState();
 
-    const route = useRoute<RouteProp<{ params: RouteParams }, 'params'>>();
+    const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
     const { text, secondsPerLine } = route.params || {};
 
     if (!permission) {
@@ -41,7 +41,7 @@ export default function CameraComponent() {
     let recordVideo = () => {
         setRecording(true);
         let options = {
-            quality: '1080p',
+            quality: "1080p",
             maxDuration: 60,
             mute: false,
         };
@@ -80,7 +80,7 @@ export default function CameraComponent() {
                         onPress={recording ? stopRecording : recordVideo}
                     >
                         <Text style={styles.text}>
-                            {recording ? 'Stop' : 'Record'}
+                            {recording ? "Stop" : "Record"}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -104,8 +104,8 @@ const styles = StyleSheet.create({
     },
     button: {
         flex: 1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
+        alignSelf: "flex-end",
+        alignItems: "center",
         marginBottom: 30,
     },
     text: {

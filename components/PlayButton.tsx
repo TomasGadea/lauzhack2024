@@ -4,37 +4,37 @@ import { Ionicons } from "@expo/vector-icons";
 import Animated, { runOnJS, useDerivedValue } from "react-native-reanimated";
 
 interface PlayButtonProps {
-  isPlaying: Animated.SharedValue<boolean>;
-  onPress: () => void;
+    isPlaying: Animated.SharedValue<boolean>;
+    onPress: () => void;
 }
 
 export default function PlayButton({ isPlaying, onPress }: PlayButtonProps) {
-  const [showPause, setShowPause] = useState(false);
+    const [showPause, setShowPause] = useState(false);
 
-  const togglePause = (value: boolean) => {
-    setShowPause(value);
-  };
+    const togglePause = (value: boolean) => {
+        setShowPause(value);
+    };
 
-  // To change the button we need to render the component again
-  useDerivedValue(() => {
-    runOnJS(togglePause)(isPlaying.value);
-  });
+    // To change the button we need to render the component again
+    useDerivedValue(() => {
+        runOnJS(togglePause)(isPlaying.value);
+    });
 
-  return (
-    <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
-      <Ionicons
-        name={showPause ? "pause-circle-sharp" : "play-circle"}
-        size={70}
-        color="black"
-      />
-    </TouchableOpacity>
-  );
+    return (
+        <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+            <Ionicons
+                name={showPause ? "pause-circle-sharp" : "play-circle"}
+                size={70}
+                color="black"
+            />
+        </TouchableOpacity>
+    );
 }
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    height: 70,
-    width: 70,
-    borderRadius: 35,
-  },
+    buttonContainer: {
+        height: 70,
+        width: 70,
+        borderRadius: 35,
+    },
 });

@@ -23,8 +23,10 @@ export default function HomeScreen() {
             <ThemedView style={styles.inputContainer}>
                 <SpeechInput text={text} setText={setText} />
             </ThemedView>
-            <PaceButtons onSelect={setSecondsPerLine} />
-            <ThemedView style={styles.recordButton}>
+            <ThemedView style={styles.paceButtonsContainer}>
+                <PaceButtons onSelect={setSecondsPerLine} />
+            </ThemedView>
+            <ThemedView style={styles.recordButtonContainer}>
                 <Button onPress={onPress} />
             </ThemedView>
         </RootLayout>
@@ -32,10 +34,11 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-    inputContainer: {
-        gap: 8,
+    inputContainer: {},
+    paceButtonsContainer: {
+        bottom: 15,
     },
-    recordButton: {
+    recordButtonContainer: {
         paddingHorizontal: 100,
     },
 });
