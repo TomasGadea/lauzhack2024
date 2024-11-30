@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import {
     View,
     Text,
@@ -6,12 +6,12 @@ import {
     Animated,
     TouchableOpacity,
     Dimensions,
-} from 'react-native';
+} from "react-native";
 
 export default function ScrollingTextComponent() {
     const scrollAnim = useRef(new Animated.Value(0)).current;
     const [isScrolling, setIsScrolling] = useState(false);
-    const { height } = Dimensions.get('window');
+    const { height } = Dimensions.get("window");
 
     const longText = `
   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -107,32 +107,32 @@ export default function ScrollingTextComponent() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         padding: 20,
     },
     textContainer: {
         height: 200, // Fixed height for visible area
-        overflow: 'hidden',
-        width: '100%',
+        overflow: "hidden",
+        width: "100%",
     },
     scrollingText: {
         fontSize: 16,
-        textAlign: 'left',
+        textAlign: "left",
     },
     buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '100%',
+        flexDirection: "row",
+        justifyContent: "space-around",
+        width: "100%",
         marginTop: 20,
     },
     button: {
-        backgroundColor: '#007bff',
+        backgroundColor: "#007bff",
         padding: 10,
         borderRadius: 5,
     },
     buttonText: {
-        color: 'white',
-        textAlign: 'center',
+        color: "white",
+        textAlign: "center",
     },
 });
