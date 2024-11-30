@@ -62,6 +62,19 @@ export default function TabLayout() {
                     ),
                 }}
             />
+            <Tabs.Screen
+                name="text2"
+                options={{
+                    title: 'Text2',
+                    tabBarIcon: ({ color }) => (
+                        <IconSymbol
+                            size={28}
+                            name="camera.fill"
+                            color={color}
+                        />
+                    ),
+                }}
+            />
         </Tabs>
     );
 }
