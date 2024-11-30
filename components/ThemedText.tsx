@@ -35,29 +35,29 @@ export function ThemedText({
 
 const styles = StyleSheet.create({
     default: {
-        fontFamily: "sans-serif",
+        fontFamily: 'sans-serif',
         fontSize: 16,
         lineHeight: 24,
     },
     defaultSemiBold: {
-        fontFamily: "sans-serif",
+        fontFamily: 'sans-serif',
         fontSize: 16,
         lineHeight: 24,
         fontWeight: '600',
     },
     title: {
-        fontFamily: "sans-serif",
+        fontFamily: 'sans-serif',
         fontSize: 32,
         fontWeight: 'bold',
         lineHeight: 32,
     },
     subtitle: {
-        fontFamily: "sans-serif",
+        fontFamily: 'sans-serif',
         fontSize: 20,
         fontWeight: 'bold',
     },
     link: {
-        fontFamily: "sans-serif",
+        fontFamily: 'sans-serif',
         lineHeight: 30,
         fontSize: 16,
         color: '#0a7ea4',

@@ -10,14 +10,15 @@ import Animated, {
 import { ThemedView } from '@/components/ThemedView';
 import { useBottomTabOverflow } from '@/components/ui/TabBarBackground';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { ThemedText } from './ThemedText';
 
-const HEADER_HEIGHT = 80;
+const HEADER_HEIGHT = 60;
 
 type Props = PropsWithChildren<{
     headerBackgroundColor: { dark: string; light: string };
 }>;
 
-export default function ParallaxScrollView({
+export default function RootLayout({
     children,
     headerBackgroundColor,
 }: Props) {
@@ -33,13 +34,6 @@ export default function ParallaxScrollView({
                         scrollOffset.value,
                         [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
                         [-HEADER_HEIGHT / 2, 0, HEADER_HEIGHT * 0.75],
-                    ),
-                },
-                {
-                    scale: interpolate(
-                        scrollOffset.value,
-                        [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
-                        [2, 1, 1],
                     ),
                 },
             ],
@@ -61,6 +55,9 @@ export default function ParallaxScrollView({
                         headerAnimatedStyle,
                     ]}
                 >
+                    <ThemedView style={styles.titleContainer}>
+                        <ThemedText style={styles.title}>Lirica</ThemedText>
+                    </ThemedView>
                 </Animated.View>
                 <ThemedView style={styles.content}>{children}</ThemedView>
             </Animated.ScrollView>
@@ -69,6 +66,18 @@ export default function ParallaxScrollView({
 }
 
 const styles = StyleSheet.create({
+    title: {
+        fontFamily: 'SixtyfourConvergence',
+        fontSize: 20,
+        lineHeight: 24,
+    },
+    titleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 8,
+        top: 40,
+    },
     container: {
         flex: 1,
     },
