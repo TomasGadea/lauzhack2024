@@ -9,7 +9,7 @@ import Animated, {
 
 import { ThemedText } from '@/components/ThemedText';
 
-export function HelloWave() {
+export function TextInput() {
     const rotationAnimation = useSharedValue(0);
 
     rotationAnimation.value = withRepeat(
@@ -17,7 +17,7 @@ export function HelloWave() {
             withTiming(25, { duration: 150 }),
             withTiming(0, { duration: 150 }),
         ),
-        4, // Run the animation 4 times
+        3,
     );
 
     const animatedStyle = useAnimatedStyle(() => ({
@@ -26,7 +26,7 @@ export function HelloWave() {
 
     return (
         <Animated.View style={animatedStyle}>
-            <ThemedText style={styles.text}>👋</ThemedText>
+            <ThemedText style={styles.text}>🎙️</ThemedText>
         </Animated.View>
     );
 }

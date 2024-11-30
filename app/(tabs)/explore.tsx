@@ -78,9 +78,6 @@ export default function TabTwoScreen() {
                         app/_layout.tsx
                     </ThemedText>{' '}
                     to see how to load{' '}
-                    <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-                        custom fonts such as this one.
-                    </ThemedText>
                 </ThemedText>
                 <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
                     <ThemedText type="link">Learn more</ThemedText>
