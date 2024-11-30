@@ -1,8 +1,13 @@
 import React, { useState, useRef } from "react";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, RouteProp } from "@react-navigation/native";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
-import ScrollingTextComponent from "./text2";
+import ScrollingTextComponent from "@/components/ScrollingTextComponent";
+
+type RouteParams = {
+  text: string,
+  secondsPerLine: number
+};
 
 export default function CameraComponent() {
     let cameraRef = useRef();
@@ -11,8 +16,8 @@ export default function CameraComponent() {
     const [recording, setRecording] = useState(false);
     const [video, setVideo] = useState();
 
-    const route = useRoute();
-    const { text } = route.params || {};
+    const route = useRoute<RouteProp<{ params: RouteParams }, 'params'>>();
+    const { text, secondsPerLine } = route.params || {};
 
     if (!permission) {
         return <View />;

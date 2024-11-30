@@ -6,12 +6,15 @@ import { SpeechInput } from "@/components/SpeechInput";
 import RootLayout from "@/components/RootLayout";
 import { ThemedView } from "@/components/ThemedView";
 import Button from "@/components/Button";
+import PaceButtons from "@/components/PaceButtons";
 
 export default function HomeScreen() {
     const navigation = useNavigation();
     const [text, setText] = React.useState<string>("");
+    const [secondsPerLine, setSecondsPerLine] = React.useState<number>(1.25);
+
     const onPress = () => {
-        navigation.navigate("camera", { text });
+        navigation.navigate("camera", { text, secondsPerLine });
     };
     return (
         <RootLayout
@@ -20,6 +23,7 @@ export default function HomeScreen() {
             <ThemedView style={styles.inputContainer}>
                 <SpeechInput text={text} setText={setText} />
             </ThemedView>
+            <PaceButtons onSelect={setSecondsPerLine} />
             <ThemedView style={styles.recordButton}>
                 <Button onPress={onPress} />
             </ThemedView>
