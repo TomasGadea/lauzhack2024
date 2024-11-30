@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import {
     View,
     Text,
@@ -6,12 +6,12 @@ import {
     Animated,
     TouchableOpacity,
     Dimensions,
-} from 'react-native';
+} from "react-native";
 
 export default function ScrollingTextComponent() {
     const scrollAnim = useRef(new Animated.Value(0)).current;
     const [isScrolling, setIsScrolling] = useState(false);
-    const { height } = Dimensions.get('window');
+    const { height } = Dimensions.get("window");
 
     const longText = `
 Los Juegos Olímpicos de México 1968, oficialmente conocidos como los Juegos de la XIX Olimpiada, fueron un evento multideportivo internacional celebrado en la Ciudad de México, México, del 12 al 27 de octubre de 1968. Después de dos candidaturas infructuosas, se seleccionó a la capital mexicana como ciudad sede del evento en la 60.ª Sesión del Comité Olímpico Internacional. Desde ese momento se constituyó formalmente el Comité Organizador que se encargó, junto con diversas secretarías de Estado, de la organización de los juegos. A excepción de cuatro sedes y tres estadios de fútbol, todas las instalaciones deportivas se ubicaron dentro de los límites de la ciudad. Se construyeron dos villas olímpicas y se emplearon hoteles y apartamentos para hospedar a deportistas, jueces y entrenadores.
@@ -73,32 +73,32 @@ Participaron un total de 5516 atletas —4735 hombres y 781 mujeres— de 112 pa
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
         padding: 20,
     },
     textContainer: {
         height: 200, // Fixed height for visible area
-        overflow: 'hidden',
-        width: '100%',
+        overflow: "hidden",
+        width: "100%",
     },
     scrollingText: {
         fontSize: 16,
-        textAlign: 'left',
+        textAlign: "left",
     },
     buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '100%',
+        flexDirection: "row",
+        justifyContent: "space-around",
+        width: "100%",
         marginTop: 20,
     },
     button: {
-        backgroundColor: '#007bff',
+        backgroundColor: "#007bff",
         padding: 10,
         borderRadius: 5,
     },
     buttonText: {
-        color: 'white',
-        textAlign: 'center',
+        color: "white",
+        textAlign: "center",
     },
 });

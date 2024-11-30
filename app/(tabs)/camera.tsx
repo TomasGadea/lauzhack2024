@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { CameraView, useCameraPermissions } from 'expo-camera';
+import React, { useState } from "react";
+import { useRoute } from "@react-navigation/native";
+import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { CameraView, useCameraPermissions } from "expo-camera";
+import ScrollingTextComponent from "./text2";
 
 export default function CameraComponent() {
-    const [facing, setFacing] = useState('back');
+    const [facing, setFacing] = useState("back");
     const [permission, requestPermission] = useCameraPermissions();
 
+    const route = useRoute();
+    const { text } = route.params || {};
+
     if (!permission) {
-        // Camera permissions are still loading.
         return <View />;
     }
 
     if (!permission.granted) {
-        // Camera permissions are not granted yet.
         return (
             <View style={styles.container}>
-                <Text style={{ textAlign: 'center' }}>
+                <Text style={{ textAlign: "center" }}>
                     We need your permission to show the camera
                 </Text>
                 <Button onPress={requestPermission} title="Grant Permission" />
@@ -24,12 +27,13 @@ export default function CameraComponent() {
     }
 
     function toggleCameraFacing() {
-        setFacing((current) => (current === 'back' ? 'front' : 'back'));
+        setFacing((current) => (current === "back" ? "front" : "back"));
     }
 
     return (
         <View style={styles.container}>
             <CameraView style={styles.camera} facing={facing}>
+                <ScrollingTextComponent text={text} />
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.button}
@@ -46,25 +50,25 @@ export default function CameraComponent() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: "center",
     },
     camera: {
         flex: 1,
     },
     buttonContainer: {
         flex: 1,
-        flexDirection: 'row',
-        backgroundColor: 'transparent',
+        flexDirection: "row",
+        backgroundColor: "transparent",
         margin: 64,
     },
     button: {
         flex: 1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
+        alignSelf: "flex-end",
+        alignItems: "center",
     },
     text: {
         fontSize: 24,
-        fontWeight: 'bold',
-        color: 'white',
+        fontWeight: "bold",
+        color: "white",
     },
 });
