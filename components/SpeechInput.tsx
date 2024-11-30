@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
         textAlignVertical: 'top',
     },
     textInputFocused: {
-    //    borderColor: '#007bff',
-    //    shadowColor: '#007bff',
-    //    shadowOffset: { width: 0, height: 4 },
-    //    shadowOpacity: 0.2,
-    //    shadowRadius: 1,
+        //    borderColor: '#007bff',
+        //    shadowColor: '#007bff',
+        //    shadowOffset: { width: 0, height: 4 },
+        //    shadowOpacity: 0.2,
+        //    shadowRadius: 1,
     },
 });

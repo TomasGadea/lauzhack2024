@@ -1,40 +1,29 @@
 import * as React from 'react';
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { MicMove } from '@/components/MicMove';
 import { SpeechInput } from '@/components/SpeechInput';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import RootLayout from '@/components/RootLayout';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
     const [text, setText] = React.useState<string>('');
     return (
-        <ParallaxScrollView
-            headerBackgroundColor={{ light: '#F0F8FF', dark: '#1D3D47' }}
+        <RootLayout
+            headerBackgroundColor={{ light: '#FFFFFF', dark: '#1D3D47' }}
         >
-            <ThemedView style={styles.titleContainer}>
-                <MicMove />
-                <ThemedText type="title">Lirica</ThemedText>
-                <MicMove />
-            </ThemedView>
             <ThemedView style={styles.stepContainer}>
                 <SpeechInput text={text} setText={setText} />
             </ThemedView>
-        </ParallaxScrollView>
+        </RootLayout>
     );
 }
 
 const styles = StyleSheet.create({
-    titleContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 8,
-    },
     stepContainer: {
         gap: 8,
-        marginBottom: 8,
+        marginBottom: 50,
     },
     reactLogo: {
         height: 178,
