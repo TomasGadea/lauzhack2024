@@ -10,7 +10,10 @@ import Button from "@/components/Button";
 export default function HomeScreen() {
     const navigation = useNavigation();
     const [text, setText] = React.useState<string>("");
-    const onPress = () => navigation.navigate("camera");
+    const onPress = () => {
+        console.log(text);
+        navigation.navigate("camera", { text });
+    };
     return (
         <RootLayout
             headerBackgroundColor={{ light: "#FFFFFF", dark: "#1D3D47" }}

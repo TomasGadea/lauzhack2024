@@ -102,7 +102,7 @@ export default function ScrollingTextComponent({
     };
 
     return (
-        <View style={[styles.container, { width: charsPerLine * 25 }]}>
+        <View style={[styles.container]}>
             <Text style={[styles.text, styles.secondaryLine]}>
                 {lines[currentIndex - 1] || ""}
             </Text>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: "center",
         color: "black",
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: "rgba(255, 255, 255, 0.5)",
     },
     primaryLine: {
         opacity: 1,
