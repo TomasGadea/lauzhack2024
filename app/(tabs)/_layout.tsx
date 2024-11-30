@@ -49,5 +49,4 @@ export default function TabLayout() {
       />
     </Tabs>
   );
->>>>>>> feat/camera-icon
 }
