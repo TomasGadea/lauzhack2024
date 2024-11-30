@@ -1,15 +1,20 @@
 import React, { useState } from "react";
-import { useRoute } from "@react-navigation/native";
+import { useRoute, RouteProp } from "@react-navigation/native";
 import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CameraView, useCameraPermissions } from "expo-camera";
-import ScrollingTextComponent from "./text2";
+import ScrollingTextComponent from "@/components/ScrollingTextComponent";
+
+type RouteParams = {
+  text: string,
+  secondsPerLine: number
+};
 
 export default function CameraComponent() {
     const [facing, setFacing] = useState("back");
     const [permission, requestPermission] = useCameraPermissions();
 
-    const route = useRoute();
-    const { text } = route.params || {};
+    const route = useRoute<RouteProp<{ params: RouteParams }, 'params'>>();
+    const { text, secondsPerLine } = route.params || {};
 
     if (!permission) {
         return <View />;
@@ -33,7 +38,7 @@ export default function CameraComponent() {
     return (
         <View style={styles.container}>
             <CameraView style={styles.camera} facing={facing}>
-                <ScrollingTextComponent text={text} />
+                <ScrollingTextComponent text={text} secondsPerLine={secondsPerLine}/>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.button}
