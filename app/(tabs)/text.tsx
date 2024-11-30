@@ -14,43 +14,9 @@ export default function ScrollingTextComponent() {
     const { height } = Dimensions.get('window');
 
     const longText = `
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  
-  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-  Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
-  Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. 
-  Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
+Los Juegos Olímpicos de México 1968, oficialmente conocidos como los Juegos de la XIX Olimpiada, fueron un evento multideportivo internacional celebrado en la Ciudad de México, México, del 12 al 27 de octubre de 1968. Después de dos candidaturas infructuosas, se seleccionó a la capital mexicana como ciudad sede del evento en la 60.ª Sesión del Comité Olímpico Internacional. Desde ese momento se constituyó formalmente el Comité Organizador que se encargó, junto con diversas secretarías de Estado, de la organización de los juegos. A excepción de cuatro sedes y tres estadios de fútbol, todas las instalaciones deportivas se ubicaron dentro de los límites de la ciudad. Se construyeron dos villas olímpicas y se emplearon hoteles y apartamentos para hospedar a deportistas, jueces y entrenadores.
+Participaron un total de 5516 atletas —4735 hombres y 781 mujeres— de 112 países, que compitieron en 172 eventos de veinte deportes —dieciocho del programa olímpico y dos de demostración—. Se prohibió la participación de Sudáfrica por sus políticas racistas, las Alemanias compitieron como países separados por primera vez y naciones como El Salvador, Honduras, Kuwait y Paraguay, entre otras, hicieron su debut en los Juegos Olímpicos de Verano. Esta fue la primera edición del evento organizada por un país en vías de desarrollo, por una nación hispanohablante y la primera realizada en América Latina. También fueron los terceros juegos celebrados en otoño, los primeros con controles antidopaje y pruebas de género e hizo su aparición la olimpiada cultural.
 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  
-  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-  Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
-  Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. 
-  Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  
-  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-  Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
-  Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. 
-  Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  
-  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-  Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
-  Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. 
-  Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra.
   `;
 
     const startScroll = () => {
