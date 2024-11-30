@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 
 export default function CameraComponent() {
+    let cameraRef = useRef();
     const [facing, setFacing] = useState('back');
     const [permission, requestPermission] = useCameraPermissions();
+    const [recording, setRecording] = useState(false);
+    const [video, setVideo] = useState();
 
     if (!permission) {
         // Camera permissions are still loading.
@@ -27,9 +30,36 @@ export default function CameraComponent() {
         setFacing((current) => (current === 'back' ? 'front' : 'back'));
     }
 
+    let recordVideo = () => {
+        setRecording(true);
+        let options = {
+            quality: '1080p',
+            maxDuration: 60,
+            mute: false,
+        };
+
+        cameraRef.current.recordAsync(options).then((recordedVideo) => {
+            setVideo(recordedVideo);
+            setRecording(false);
+        });
+    };
+    let stopRecording = () => {
+        setRecording(false);
+        cameraRef.current.stopRecording();
+    };
+
+    if (video) {
+        console.log(video);
+    }
+
     return (
         <View style={styles.container}>
-            <CameraView style={styles.camera} facing={facing}>
+            <CameraView
+                style={styles.camera}
+                facing={facing}
+                ref={cameraRef}
+                mode="video"
+            >
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.button}
@@ -37,12 +67,19 @@ export default function CameraComponent() {
                     >
                         <Text style={styles.text}>Flip Camera</Text>
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={recording ? stopRecording : recordVideo}
+                    >
+                        <Text style={styles.text}>
+                            {recording ? 'Stop' : 'Record'}
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </CameraView>
         </View>
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -61,6 +98,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'flex-end',
         alignItems: 'center',
+        marginBottom: 30,
     },
     text: {
         fontSize: 24,
