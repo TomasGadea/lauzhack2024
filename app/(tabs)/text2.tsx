@@ -135,6 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     color: 'black',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
   primaryLine: {
     opacity: 1,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import ScrollingTextComponent from './text2';
 
 export default function CameraComponent() {
     const [facing, setFacing] = useState('back');
@@ -30,6 +31,7 @@ export default function CameraComponent() {
     return (
         <View style={styles.container}>
             <CameraView style={styles.camera} facing={facing}>
+                        <ScrollingTextComponent/>
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
                         style={styles.button}
