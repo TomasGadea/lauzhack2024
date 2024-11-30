@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { View, TextInput, StyleSheet, type TextProps } from 'react-native';
+import * as React from "react";
+import { View, TextInput, StyleSheet } from "react-native";
 
-export type SpeechInputProps = TextProps & {
+export type SpeechInputProps = {
     text: string;
     setText: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -34,20 +34,20 @@ export function SpeechInput({ text, setText }: SpeechInputProps) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: "center",
     },
     textInput: {
         minHeight: 150,
         maxHeight: 250,
         paddingTop: 10,
         borderWidth: 2,
-        borderColor: '#ddd',
+        borderColor: "#ddd",
         borderRadius: 12,
         paddingHorizontal: 16,
-        backgroundColor: '#fff',
-        color: '#333',
+        backgroundColor: "#fff",
+        color: "#333",
         marginBottom: 20,
-        textAlignVertical: 'top',
+        textAlignVertical: "top",
     },
     textInputFocused: {
         //    borderColor: '#007bff',
