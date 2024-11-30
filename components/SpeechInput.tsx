@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         textAlignVertical: 'top',
     },
-    //textInputFocused: {
+    textInputFocused: {
     //    borderColor: '#007bff',
     //    shadowColor: '#007bff',
     //    shadowOffset: { width: 0, height: 4 },
     //    shadowOpacity: 0.2,
     //    shadowRadius: 1,
-    //},
+    },
 });
