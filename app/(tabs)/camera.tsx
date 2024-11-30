@@ -1,65 +1,115 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { Camera } from 'expo-camera';
+import { Ionicons } from '@expo/vector-icons'; // For camera flip icon
 
-const VideoRecorderScreen = () => {
-  const [isRecording, setIsRecording] = useState(false);
-  const [cameraType, setCameraType] = useState('back');
+type CameraProps = {
+  onPictureTaken?: (uri: string) => void;
+};
+
+const CameraComponent: React.FC<CameraProps> = ({ onPictureTaken }) => {
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
+  const [cameraRef, setCameraRef] = useState<Camera | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
+
+  if (hasPermission === null) {
+    return <Text>Requesting for camera permission...</Text>;
+  }
+
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+  const takePicture = async () => {
+    if (cameraRef) {
+      try {
+        const photo = await cameraRef.takePictureAsync();
+        if (onPictureTaken) {
+          onPictureTaken(photo.uri);
+        }
+        Alert.alert('Picture taken!', `Saved at ${photo.uri}`);
+      } catch (error) {
+        console.error('Error taking picture:', error);
+        Alert.alert('Error', 'Failed to take picture.');
+      }
+    }
+  };
 
   const toggleCameraType = () => {
-    setCameraType(cameraType === 'back' ? 'front' : 'back');
-  };
-
-  const recordVideo = () => {
-    setIsRecording(true);
-    // Simulated video recording logic
-    console.log('Video recording started');
-  };
-
-  const stopRecording = () => {
-    setIsRecording(false);
-    // Simulated video saving logic
-    console.log('Video recording stopped');
+    setCameraType((prevType) =>
+      prevType === Camera.Constants.Type.back
+        ? Camera.Constants.Type.front
+        : Camera.Constants.Type.back
+    );
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
-        <div className="relative bg-black h-96 flex items-center justify-center">
-          <div className="text-white text-center">
-            {cameraType === 'back' 
-              ? 'Back Camera View' 
-              : 'Front Camera View'}
-          </div>
-        </div>
-        
-        <div className="flex justify-between p-4">
-          <button 
-            onClick={toggleCameraType}
-            className="bg-gray-200 text-black px-4 py-2 rounded-md hover:bg-gray-300 transition"
-          >
-            Flip Camera
-          </button>
-          
-          <button 
-            onClick={isRecording ? stopRecording : recordVideo}
-            className={`
-              px-4 py-2 rounded-md transition
-              ${isRecording 
-                ? 'bg-red-600 text-white hover:bg-red-700' 
-                : 'bg-green-600 text-white hover:bg-green-700'}
-            `}
-          >
-            {isRecording ? 'Stop Recording' : 'Start Recording'}
-          </button>
-        </div>
-      </div>
-      
-      {isRecording && (
-        <div className="mt-4 text-red-600 font-bold">
-          Recording in Progress
-        </div>
-      )}
-    </div>
+    <View style={styles.container}>
+      <Camera
+        style={styles.camera}
+        type={cameraType}
+        ref={(ref) => setCameraRef(ref)}
+      >
+        <View style={styles.controlContainer}>
+          <TouchableOpacity onPress={toggleCameraType} style={styles.button}>
+            <Ionicons name="camera-reverse" size={32} color="white" />
+          </TouchableOpacity>
+        </View>
+      </Camera>
+      <View style={styles.footerContainer}>
+        <TouchableOpacity onPress={takePicture} style={styles.captureButton}>
+          <Text style={styles.captureButtonText}>Capture</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
-export default VideoRecorderScreen;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  camera: {
+    flex: 1,
+  },
+  controlContainer: {
+    flex: 1,
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    padding: 20,
+  },
+  button: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 25,
+    padding: 10,
+  },
+  footerContainer: {
+    backgroundColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  captureButton: {
+    backgroundColor: 'red',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  captureButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});
+
+export default CameraComponent;
+
