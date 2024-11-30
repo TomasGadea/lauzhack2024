@@ -13,7 +13,7 @@ export default function HomeScreen() {
         <RootLayout
             headerBackgroundColor={{ light: '#FFFFFF', dark: '#1D3D47' }}
         >
-            <ThemedView style={styles.stepContainer}>
+            <ThemedView style={styles.inputContainer}>
                 <SpeechInput text={text} setText={setText} />
             </ThemedView>
         </RootLayout>
@@ -21,15 +21,8 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-    stepContainer: {
+    inputContainer: {
         gap: 8,
         marginBottom: 50,
-    },
-    reactLogo: {
-        height: 178,
-        width: 290,
-        bottom: 0,
-        left: 0,
-        position: 'absolute',
     },
 });
