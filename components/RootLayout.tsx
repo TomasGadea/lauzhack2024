@@ -6,20 +6,18 @@ import Animated, {
     useAnimatedStyle,
     useScrollViewOffset,
 } from "react-native-reanimated";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 import { ThemedView } from "@/components/ThemedView";
 import { useBottomTabOverflow } from "@/components/ui/TabBarBackground";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { ThemedText } from "./ThemedText";
 
-const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT = 75;
 
-type Props = PropsWithChildren<{
-    headerBackgroundColor: { dark: string; light: string };
-}>;
+type Props = PropsWithChildren<{}>;
 
-export default function RootLayout({ children, headerBackgroundColor }: Props) {
-    const colorScheme = useColorScheme() ?? "light";
+export default function RootLayout({ children }: Props) {
     const scrollRef = useAnimatedRef<Animated.ScrollView>();
     const scrollOffset = useScrollViewOffset(scrollRef);
     const bottom = useBottomTabOverflow();
@@ -36,6 +34,7 @@ export default function RootLayout({ children, headerBackgroundColor }: Props) {
             ],
         };
     });
+    const backgroundColor = useThemeColor({}, "background");
 
     return (
         <ThemedView style={styles.container}>
@@ -48,7 +47,7 @@ export default function RootLayout({ children, headerBackgroundColor }: Props) {
                 <Animated.View
                     style={[
                         styles.header,
-                        { backgroundColor: headerBackgroundColor[colorScheme] },
+                        { backgroundColor: backgroundColor },
                         headerAnimatedStyle,
                     ]}
                 >
@@ -73,7 +72,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         gap: 8,
-        top: 40,
+        top: 50,
     },
     container: {
         flex: 1,
