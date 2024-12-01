@@ -1,35 +1,46 @@
 import React, { useState, useRef } from "react";
 import { useRoute, RouteProp } from "@react-navigation/native";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+    Button,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+    SafeAreaView,
+} from "react-native";
+import { Video } from "expo-av";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import ScrollingTextComponent from "@/components/ScrollingTextComponent";
 
 type RouteParams = {
-  text: string,
-  secondsPerLine: number
+    text: string;
+    secondsPerLine: number;
 };
 
 export default function CameraComponent() {
     let cameraRef = useRef();
     const [facing, setFacing] = useState("back");
-    const [permission, requestPermission] = useCameraPermissions();
+    const [CameraPermission, requestCameraPermission] = useCameraPermissions();
     const [recording, setRecording] = useState(false);
     const [video, setVideo] = useState();
 
-    const route = useRoute<RouteProp<{ params: RouteParams }, 'params'>>();
+    const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
     const { text, secondsPerLine } = route.params || {};
 
-    if (!permission) {
+    if (!CameraPermission) {
         return <View />;
     }
 
-    if (!permission.granted) {
+    if (!CameraPermission.granted) {
         return (
             <View style={styles.container}>
                 <Text style={{ textAlign: "center" }}>
                     We need your permission to show the camera
                 </Text>
-                <Button onPress={requestPermission} title="Grant Permission" />
+                <Button
+                    onPress={requestCameraPermission}
+                    title="Grant Camera Permission"
+                />
             </View>
         );
     }
@@ -41,7 +52,7 @@ export default function CameraComponent() {
     let recordVideo = () => {
         setRecording(true);
         let options = {
-            quality: '1080p',
+            quality: "1080p",
             maxDuration: 60,
             mute: false,
         };
@@ -57,7 +68,23 @@ export default function CameraComponent() {
     };
 
     if (video) {
-        console.log(video);
+        return (
+            <SafeAreaView style={styles.container}>
+                <Video
+                    style={styles.video}
+                    source={{ uri: video.uri }}
+                    useNativeControls
+                    resizeMode="contain"
+                    isLooping
+                />
+                <TouchableOpacity
+                    style={styles.discardButton}
+                    onPress={() => setVideo(undefined)}
+                >
+                    <Text style={styles.text}> AAAAA</Text>
+                </TouchableOpacity>
+            </SafeAreaView>
+        );
     }
 
     return (
@@ -80,7 +107,7 @@ export default function CameraComponent() {
                         onPress={recording ? stopRecording : recordVideo}
                     >
                         <Text style={styles.text}>
-                            {recording ? 'Stop' : 'Record'}
+                            {recording ? "Stop" : "Record"}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -104,13 +131,23 @@ const styles = StyleSheet.create({
     },
     button: {
         flex: 1,
-        alignSelf: 'flex-end',
-        alignItems: 'center',
+        alignSelf: "flex-end",
+        alignItems: "center",
         marginBottom: 30,
     },
     text: {
         fontSize: 24,
         fontWeight: "bold",
         color: "white",
+    },
+    video: {
+        flex: 1,
+        alignSelf: "center",
+        width: "90%",
+        marginbottom: 200,
+    },
+    discardButton: {
+        flex: 1,
+        marginBottom: 0,
     },
 });

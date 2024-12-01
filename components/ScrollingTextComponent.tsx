@@ -5,7 +5,11 @@ export default function ScrollingTextComponent({
     text,
     charsPerLine = 25,
     secondsPerLine = 1,
-}: {text: string, charsPerLine?: number, secondsPerLine?: number}) {
+}: {
+    text: string;
+    charsPerLine?: number;
+    secondsPerLine?: number;
+}) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [lines, setLines] = useState<string[]>([]);
     const [isRunning, setIsRunning] = useState(false);
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: "center",
         color: "black",
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: "rgba(255, 255, 255, 0.5)",
     },
     primaryLine: {
         opacity: 1,
