@@ -12,6 +12,7 @@ import { Video } from "expo-av";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import ScrollingTextComponent from "@/components/ScrollingTextComponent";
 import { shareAsync } from "expo-sharing";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 type RouteParams = {
     text: string;
@@ -26,10 +27,18 @@ export default function CameraComponent() {
     const [CameraPermission, requestCameraPermission] = useCameraPermissions();
     const [recording, setRecording] = useState(false);
     const [video, setVideo] = useState();
+    const [pauseHappened, setPauseHappened] = useState(false);
 
     const navigation = useNavigation();
+    const handleCameraRestart = () => {
+        setRecording(false);
+        setVideo(undefined);
+        setPauseHappened(false);
+
+    };
     const onBack = () => {
         scrollerRef.current?.handleRestart();
+        handleCameraRestart();
         navigation.navigate("index");
     };
     const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
@@ -113,7 +122,7 @@ export default function CameraComponent() {
             </SafeAreaView>
         );
     }
-
+    // BUG: record some video + back + camera + toggle sets video despite handling restart
     return (
         <View style={styles.container}>
             <CameraView
@@ -128,28 +137,37 @@ export default function CameraComponent() {
                     ref={scrollerRef}
                 />
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={toggleCameraFacing}
-                    >
-                        <Text style={styles.text}>Flip</Text>
+                    <TouchableOpacity style={styles.button} onPress={onBack}>
+                        <Icon name="arrow-left" size={30} color="white" />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={recording ? onPause : recordVideo}
+                        onPress={recording ? stopRecording : recordVideo}
                     >
-                        <Text style={styles.text}>
-                            {recording ? "Stop" : "Record"}
-                        </Text>
+                        <Icon
+                            name={recording ? "stop-circle" : "video-camera"}
+                            size={30}
+                            color="white"
+                        />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.button}
-                        onPress={recording ? stopRecording : onBack}
-                    >
-                        <Text style={styles.text}>
-                            {recording ? "Finish" : "Back"}
-                        </Text>
-                    </TouchableOpacity>
+    style={styles.button}
+    onPress={() => {
+        if (recording) {
+            setPauseHappened(true);
+            onPause();
+        } else if (!pauseHappened) {
+            toggleCameraFacing();
+        }
+    }}
+>
+    {recording ? (
+        <Icon name="pause" size={30} color="white" />
+    ) : !pauseHappened ? (
+        <Icon name="refresh" size={30} color="white" />
+    ) : null}
+</TouchableOpacity>
+
                 </View>
             </CameraView>
         </View>

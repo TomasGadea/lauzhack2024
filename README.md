@@ -44,7 +44,6 @@ Follow these steps to run the demo for Lirica:
 ---
 
 ### 🛠️ Features
-
 - Script Sync: Type or paste your script directly in the app. Lirica will scroll it automatically at your preferred pace.
 - Seamless Recording: Record high-quality videos while following the script.
 - User-Friendly Interface: A clean, intuitive UI designed for effortless navigation.
@@ -73,8 +72,6 @@ Upcoming features include:
 
 - Integration with cloud storage for scripts.
 - AI-assisted script generation, optimization and evaluation.
-
----
 
 ### 👥 Meet the Team
 
