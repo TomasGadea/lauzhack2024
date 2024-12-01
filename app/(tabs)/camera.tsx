@@ -96,21 +96,23 @@ export default function CameraComponent() {
                     style={styles.video}
                     source={{ uri: video.uri }}
                     useNativeControls
-                    resizeMode="contain"
+                    resizeMode="cover"
                     isLooping
                 />
-                <TouchableOpacity
-                    style={styles.discardButton}
-                    onPress={() => setVideo(undefined)}
-                >
-                    <Text style={styles.text}>Discard</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.discardButton}
-                    onPress={shareVideo}
-                >
-                    <Text style={styles.text}>Share</Text>
-                </TouchableOpacity>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        style={styles.buttonSecond}
+                        onPress={() => setVideo(undefined)}
+                    >
+                        <Icon name={"trash"} size={30} color="black" />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.buttonSecond}
+                        onPress={shareVideo}
+                    >
+                        <Icon name={"share"} size={30} color="black" />
+                    </TouchableOpacity>
+                </View>
             </SafeAreaView>
         );
     }
@@ -172,6 +174,11 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent",
         margin: 64,
     },
+    buttonSecond: {
+        flex: 1,
+        alignItems: "center",
+        top: 75,
+    },
     button: {
         flex: 1,
         alignSelf: "flex-end",
@@ -186,8 +193,12 @@ const styles = StyleSheet.create({
     video: {
         flex: 1,
         alignSelf: "center",
-        width: "90%",
-        marginbottom: 200,
+        width: "100%",
+        height: "100%",
+        aspectRatio: 0.75,
+        borderRadius: 20,
+        overflow: 'hidden',
+        top: 75,
     },
     discardButton: {
         flex: 1,
