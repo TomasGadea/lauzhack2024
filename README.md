@@ -86,7 +86,7 @@ Upcoming features include:
 
 We’d love to hear your thoughts! For feedback, suggestions, or contributions:
 
-Email: [contact@marcfranquesa.com](mailto:contact@marcfranquesa.com)
+Email: [contact@lirica.app](mailto:contact@marcfranquesa.com)
 
 ---
 
