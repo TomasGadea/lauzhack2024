@@ -1,3 +1,5 @@
+![lirica](./assets/images/lirica.png)
+
 # Lirica: Teleprompter for Influencers
 
 ## _Stay on script, shine on screen—use Lirica!_
