@@ -4,7 +4,7 @@ import React, {
     forwardRef,
     useImperativeHandle,
 } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const ScrollingTextComponent = forwardRef(
     ({ text, charsPerLine = 25, secondsPerLine = 1 }, ref) => {
@@ -99,10 +99,10 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: "monospace",
-        fontSize: 20,
+        fontSize: 40,
         textAlign: "center",
-        color: "black",
-        backgroundColor: "rgba(255, 255, 255, 0.5)",
+        color: "white",
+        fontWeight: "bold",
     },
     primaryLine: {
         opacity: 1,
