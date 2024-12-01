@@ -11,6 +11,7 @@ import {
 import { Video } from "expo-av";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import ScrollingTextComponent from "@/components/ScrollingTextComponent";
+import { shareAsync } from 'expo-sharing';
 
 type RouteParams = {
     text: string;
@@ -68,6 +69,12 @@ export default function CameraComponent() {
     };
 
     if (video) {
+            let shareVideo = () => {
+      shareAsync(video.uri).then(() => {
+        setVideo(undefined);
+      });
+            };
+
         return (
             <SafeAreaView style={styles.container}>
                 <Video
@@ -82,6 +89,12 @@ export default function CameraComponent() {
                     onPress={() => setVideo(undefined)}
                 >
                     <Text style={styles.text}> AAAAA</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.discardButton}
+                    onPress={shareVideo}
+                >
+                    <Text style={styles.text}> BBBBBB</Text>
                 </TouchableOpacity>
             </SafeAreaView>
         );
