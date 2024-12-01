@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { useRoute, RouteProp } from "@react-navigation/native";
+import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import {
     Button,
     StyleSheet,
@@ -25,6 +25,11 @@ export default function CameraComponent() {
     const [CameraPermission, requestCameraPermission] = useCameraPermissions();
     const [recording, setRecording] = useState(false);
     const [video, setVideo] = useState();
+
+    const navigation = useNavigation();
+    const onBack = () => {
+        navigation.navigate("index");
+    };
 
     const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
     const { text, secondsPerLine } = route.params || {};
@@ -103,6 +108,7 @@ export default function CameraComponent() {
         );
     }
 
+
     return (
         <View style={styles.container}>
             <CameraView
@@ -121,7 +127,7 @@ export default function CameraComponent() {
                         style={styles.button}
                         onPress={toggleCameraFacing}
                     >
-                        <Text style={styles.text}>Flip Camera</Text>
+                        <Text style={styles.text}>Flip</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
@@ -129,6 +135,14 @@ export default function CameraComponent() {
                     >
                         <Text style={styles.text}>
                             {recording ? "Stop" : "Record"}
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.button}
+                        onPress={onBack}
+                    >
+                        <Text style={styles.text}>
+                            Back
                         </Text>
                     </TouchableOpacity>
                 </View>
