@@ -27,10 +27,18 @@ export default function CameraComponent() {
     const [CameraPermission, requestCameraPermission] = useCameraPermissions();
     const [recording, setRecording] = useState(false);
     const [video, setVideo] = useState();
+    const [pauseHappened, setPauseHappened] = useState(false);
 
     const navigation = useNavigation();
+    const handleCameraRestart = () => {
+        setRecording(false);
+        setVideo(undefined);
+        setPauseHappened(false);
+
+    };
     const onBack = () => {
         scrollerRef.current?.handleRestart();
+        handleCameraRestart();
         navigation.navigate("index");
     };
     const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
@@ -114,7 +122,7 @@ export default function CameraComponent() {
             </SafeAreaView>
         );
     }
-    // TODO: after pause don't allow camera toggle again
+    // BUG: record some video + back + camera + toggle sets video despite handling restart
     return (
         <View style={styles.container}>
             <CameraView
@@ -143,15 +151,23 @@ export default function CameraComponent() {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.button}
-                        onPress={recording ? onPause : toggleCameraFacing}
-                    >
-                        <Icon
-                            name={recording ? "pause" : "refresh"}
-                            size={30}
-                            color="white"
-                        />
-                    </TouchableOpacity>
+    style={styles.button}
+    onPress={() => {
+        if (recording) {
+            setPauseHappened(true);
+            onPause();
+        } else if (!pauseHappened) {
+            toggleCameraFacing();
+        }
+    }}
+>
+    {recording ? (
+        <Icon name="pause" size={30} color="white" />
+    ) : !pauseHappened ? (
+        <Icon name="refresh" size={30} color="white" />
+    ) : null}
+</TouchableOpacity>
+
                 </View>
             </CameraView>
         </View>
