@@ -55,6 +55,13 @@ Follow these steps to run the demo for Lirica:
 - Framework: Built using Expo for a smooth cross-platform experience.
   Core Technologies: React Native and Expo CLI.
 - Video Integration: Leverages native camera capabilities to ensure flawless recordings.
+- Audio Speaking detector model:
+    - Extract features from original signal:
+        - RMS of signal window.
+        - Zero-crossing rate: Number of time-domain zero-crossings per secind.
+        - Difference in amplitude between maximum peak and previous minimum peak within an audio frame.
+        - Difference in amplitude between maximum peak and following minimum peak within an audio frame.
+    > Samouelian, Ara et al. “Speech, silence, music and noise classification of TV broadcast material.” 5th International Conference on Spoken Language Processing (ICSLP 1998) (1998): n. pag.
 
 ---
 
