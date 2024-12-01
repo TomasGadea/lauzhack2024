@@ -21,7 +21,7 @@ type RouteParams = {
 export default function CameraComponent() {
     let cameraRef = useRef();
     let scrollerRef = useRef();
-    const [facing, setFacing] = useState("back");
+    const [facing, setFacing] = useState("front");
     const [CameraPermission, requestCameraPermission] = useCameraPermissions();
     const [recording, setRecording] = useState(false);
     const [video, setVideo] = useState();
