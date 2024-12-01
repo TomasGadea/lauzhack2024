@@ -21,6 +21,7 @@ type RouteParams = {
 export default function CameraComponent() {
     let cameraRef = useRef();
     let scrollerRef = useRef();
+
     const [facing, setFacing] = useState("front");
     const [CameraPermission, requestCameraPermission] = useCameraPermissions();
     const [recording, setRecording] = useState(false);
@@ -28,9 +29,9 @@ export default function CameraComponent() {
 
     const navigation = useNavigation();
     const onBack = () => {
+        scrollerRef.current?.handleRestart();
         navigation.navigate("index");
     };
-
     const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
     const { text, secondsPerLine } = route.params || {};
 
@@ -76,6 +77,11 @@ export default function CameraComponent() {
         cameraRef.current?.stopRecording();
     };
 
+    const onPause = () => {
+        setRecording(false);
+        scrollerRef.current?.handleStop();
+    };
+
     if (video) {
         let shareVideo = () => {
             shareAsync(video.uri).then(() => {
@@ -108,7 +114,6 @@ export default function CameraComponent() {
         );
     }
 
-
     return (
         <View style={styles.container}>
             <CameraView
@@ -131,7 +136,7 @@ export default function CameraComponent() {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={recording ? stopRecording : recordVideo}
+                        onPress={recording ? onPause : recordVideo}
                     >
                         <Text style={styles.text}>
                             {recording ? "Stop" : "Record"}
@@ -139,10 +144,10 @@ export default function CameraComponent() {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={onBack}
+                        onPress={recording ? stopRecording : onBack}
                     >
                         <Text style={styles.text}>
-                            Back
+                            {recording ? "Finish" : "Back"}
                         </Text>
                     </TouchableOpacity>
                 </View>
