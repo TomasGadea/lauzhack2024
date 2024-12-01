@@ -10,7 +10,7 @@
         "newArchEnabled": true,
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.anonymous.my-app"
+            "bundleIdentifier": "puigde.lirica.com"
         },
         "android": {
             "adaptiveIcon": {
@@ -54,7 +54,7 @@
                     "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
                     "recordAudioAndroid": true
                 }
-            ],
+            ]
         ],
         "experiments": {
             "typedRoutes": true

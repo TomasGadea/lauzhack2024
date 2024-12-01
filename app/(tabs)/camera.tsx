@@ -12,6 +12,7 @@ import { Video } from "expo-av";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import ScrollingTextComponent from "@/components/ScrollingTextComponent";
 import { shareAsync } from "expo-sharing";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 type RouteParams = {
     text: string;
@@ -108,7 +109,6 @@ export default function CameraComponent() {
         );
     }
 
-
     return (
         <View style={styles.container}>
             <CameraView
@@ -123,27 +123,24 @@ export default function CameraComponent() {
                     ref={scrollerRef}
                 />
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={toggleCameraFacing}
-                    >
-                        <Text style={styles.text}>Flip</Text>
+                    <TouchableOpacity style={styles.button} onPress={onBack}>
+                        <Icon name="arrow-left" size={30} color="white" />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={recording ? stopRecording : recordVideo}
                     >
-                        <Text style={styles.text}>
-                            {recording ? "Stop" : "Record"}
-                        </Text>
+                        <Icon
+                            name={recording ? "stop-circle" : "video-camera"}
+                            size={30}
+                            color="white"
+                        />
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={onBack}
+                        onPress={toggleCameraFacing}
                     >
-                        <Text style={styles.text}>
-                            Back
-                        </Text>
+                        <Icon name="refresh" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
             </CameraView>
