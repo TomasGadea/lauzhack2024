@@ -114,7 +114,7 @@ export default function CameraComponent() {
             </SafeAreaView>
         );
     }
-
+    // TODO: after pause don't allow camera toggle again
     return (
         <View style={styles.container}>
             <CameraView
@@ -134,7 +134,7 @@ export default function CameraComponent() {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={recording ? onPause : recordVideo}
+                        onPress={recording ? stopRecording : recordVideo}
                     >
                         <Icon
                             name={recording ? "stop-circle" : "video-camera"}
@@ -144,9 +144,13 @@ export default function CameraComponent() {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={toggleCameraFacing}
+                        onPress={recording ? onPause : toggleCameraFacing}
                     >
-                        <Icon name="refresh" size={30} color="white" />
+                        <Icon
+                            name={recording ? "pause" : "refresh"}
+                            size={30}
+                            color="white"
+                        />
                     </TouchableOpacity>
                 </View>
             </CameraView>
