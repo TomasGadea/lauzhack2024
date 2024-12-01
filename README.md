@@ -1,58 +1,96 @@
-# Welcome to your Expo app 👋
+# Lirica: Teleprompter for Influencers
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## _Stay on script, shine on screen—use Lirica!_
 
-## Get started
+### 🏆 **Project Pitch**
 
-1. Install dependencies
+In a world where video content dominates social media, influencers are constantly crafting perfect, engaging scripts to capture their audience's attention. But keeping track of those scripts while recording? That’s a challenge.
+
+**Use Lirica**: a mobile app tailored for influencers who create scripted video content.  
+With Lirica, your phone becomes your personal teleprompter, seamlessly scrolling through your script while you record. No more fumbling with papers, forgetting lines, or losing focus. Lirica ensures you stay confident, professional, and connected with your audience.
+
+Whether you’re filming a product ad, storytelling, or delivering a heartfelt message, Lirica takes the stress out of memorization, so you can focus on creating and being yourself.
+
+---
+
+### 🚀 **Getting Started**
+
+Follow these steps to run the demo for Lirica:
+
+1. **Prerequisites**:
+
+    - Make sure you have Node.js and Expo installed on your system.
+
+2. **Clone the Repository**:
+
+    ```bash
+    git clone https://github.com/your-username/lirica.git
+    cd lirica
+    ```
+
+3. **Install dependencies**:
 
     ```bash
     npm install
     ```
 
-2. Start the app
-
+4. **Simulate it on iOS**:
     ```bash
-     npx expo start
+    npx expo run:ios
     ```
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### 🛠️ Features
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- Script Sync: Type or paste your script directly in the app. Lirica will scroll it automatically at your preferred pace.
+- Seamless Recording: Record high-quality videos while following the script.
+- User-Friendly Interface: A clean, intuitive UI designed for effortless navigation.
+- Quick share: Create you video and share it on any social media app instantly.
+- Customizable Display: Adjust scrolling speed to suit your needs.
 
-## Get a fresh project
+---
 
-When you're ready, run:
+### 📚 Technical Overview
 
-```bash
-npm run reset-project
-```
+- Framework: Built using Expo for a smooth cross-platform experience.
+  Core Technologies: React Native and Expo CLI.
+- Video Integration: Leverages native camera capabilities to ensure flawless recordings.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+### 🎯 Future Scope
 
-To learn more about developing your project with Expo, look at the following resources:
+While Lirica is designed for influencers, the potential applications are limitless:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Public speakers practicing for events.
+- Educators recording lessons or tutorials.
+- Marketers creating dynamic, scripted ad campaigns.
 
-## Join the community
+Upcoming features include:
 
-Join our community of developers creating universal apps.
+- Integration with cloud storage for scripts.
+- AI-assisted script generation, optimization and evaluation.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
 
-## Make stuffy
+### 👥 Meet the Team
 
-formatting prettier
+- Pol Puigdemont i Plana
+- Marc Franquesa i Monés
+- Tomás Gadea Alcaide
+- Pau Matas i Albiol
 
-```bash
-prettier --write *
-```
+---
+
+### 📬 Feedback & Contributions
+
+We’d love to hear your thoughts! For feedback, suggestions, or contributions:
+
+Email: [contact@marcfranquesa.com](mailto:contact@marcfranquesa.com)
+
+---
+
+Let’s revolutionize video creation, one script at a time.
+
+Thank you for considering Lirica for this hackathon. Together, we make advertising simple. 🎥✨
