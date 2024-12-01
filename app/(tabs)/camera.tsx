@@ -22,6 +22,7 @@ type RouteParams = {
 export default function CameraComponent() {
     let cameraRef = useRef();
     let scrollerRef = useRef();
+
     const [facing, setFacing] = useState("front");
     const [CameraPermission, requestCameraPermission] = useCameraPermissions();
     const [recording, setRecording] = useState(false);
@@ -29,9 +30,9 @@ export default function CameraComponent() {
 
     const navigation = useNavigation();
     const onBack = () => {
+        scrollerRef.current?.handleRestart();
         navigation.navigate("index");
     };
-
     const route = useRoute<RouteProp<{ params: RouteParams }, "params">>();
     const { text, secondsPerLine } = route.params || {};
 
@@ -75,6 +76,11 @@ export default function CameraComponent() {
         setRecording(false);
         scrollerRef.current?.handleRestart();
         cameraRef.current?.stopRecording();
+    };
+
+    const onPause = () => {
+        setRecording(false);
+        scrollerRef.current?.handleStop();
     };
 
     if (video) {
@@ -128,7 +134,7 @@ export default function CameraComponent() {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={recording ? stopRecording : recordVideo}
+                        onPress={recording ? onPause : recordVideo}
                     >
                         <Icon
                             name={recording ? "stop-circle" : "video-camera"}

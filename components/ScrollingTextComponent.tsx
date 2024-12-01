@@ -61,6 +61,7 @@ const ScrollingTextComponent = forwardRef(
         }, [isRunning, currentIndex, lines]);
 
         const handleStart = () => setIsRunning(true);
+        const handleStop = () => setIsRunning(false);
         const handleRestart = () => {
             setIsRunning(false);
             setCurrentIndex(0);
@@ -69,6 +70,7 @@ const ScrollingTextComponent = forwardRef(
         useImperativeHandle(ref, () => ({
             handleStart,
             handleRestart,
+            handleStop,
         }));
 
         return (
